@@ -6,18 +6,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import model.bean.Khoa;
 import model.bean.Status;
 
+/**
+ * StatusDAO
+ *
+ * version 1.0
+ *
+ * Date 03/04/2017
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ *
+ * DATE AUTHOR DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03/04-2017 LinhTN8 Create
+ *
+ */
 public class StatusDAO {
 
 	String url = "jdbc:sqlserver://localhost:1433;instance=MSSQLSERVER;databaseName=Mock1";
 	String userName = "sa";
 	String password = "12345678";
 	Connection connection;
-	
-	void connect(){
+
+	/**
+	 * kết nối csdl
+	 */
+	void connect() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			connection = DriverManager.getConnection(url, userName, password);
@@ -30,10 +47,15 @@ public class StatusDAO {
 			System.out.println("Ket noi loi");
 		}
 	}
-	
+
+	/**
+	 * get all data status page
+	 * 
+	 * @return
+	 */
 	public ArrayList<Status> getListStatus() {
 		connect();
-		String sql=	"SELECT * FROM Status";
+		String sql = "SELECT * FROM Status";
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -41,11 +63,11 @@ public class StatusDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		ArrayList<Status> list = new ArrayList<Status>();
 		Status status;
 		try {
-			while(rs.next()){
+			while (rs.next()) {
 				status = new Status();
 				status.setStatusAccountId(rs.getString("StatusAccountId"));
 				status.setStatusName(rs.getString("StatusName"));

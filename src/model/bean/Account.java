@@ -1,5 +1,21 @@
 package model.bean;
 
+/**
+ * Account
+ *
+ * version 1.0
+ *
+ * Date 03/04/2017
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ *
+ * DATE AUTHOR DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03/04-2017 LinhTN8 Create
+ *
+ */
 public class Account {
 	private String employeeId;
 	private String accountName;

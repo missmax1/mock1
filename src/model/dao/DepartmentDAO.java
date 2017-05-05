@@ -8,16 +8,34 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.bean.Department;
-import model.bean.Status;
 
+/**
+ * DepartmentDAO
+ *
+ * version 1.0
+ *
+ * Date 03/04/2017
+ *
+ * Copyright
+ *
+ * Modification Logs:
+ *
+ * DATE AUTHOR DESCRIPTION
+ * -----------------------------------------------------------------------
+ * 03/04-2017 LinhTN8 Create
+ *
+ */
 public class DepartmentDAO {
-	
+
 	String url = "jdbc:sqlserver://localhost:1433;instance=MSSQLSERVER;databaseName=Mock1";
 	String userName = "sa";
 	String password = "12345678";
 	Connection connection;
-	
-	void connect(){
+
+	/**
+	 * kết nối csdl
+	 */
+	void connect() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			connection = DriverManager.getConnection(url, userName, password);
@@ -30,10 +48,15 @@ public class DepartmentDAO {
 			System.out.println("Ket noi loi");
 		}
 	}
-	
+
+	/**
+	 * get list department
+	 * 
+	 * @return list
+	 */
 	public ArrayList<Department> getListDepartment() {
 		connect();
-		String sql=	"SELECT * FROM Department";
+		String sql = "SELECT * FROM Department";
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -41,11 +64,11 @@ public class DepartmentDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		ArrayList<Department> list = new ArrayList<Department>();
 		Department department;
 		try {
-			while(rs.next()){
+			while (rs.next()) {
 				department = new Department();
 				department.setDepartmentId(rs.getString("DepartmentId"));
 				department.setDepartmentName(rs.getString("DepartmentName"));
